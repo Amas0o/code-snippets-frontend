@@ -42,6 +42,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.1"
   },
-    "homepage": "https://github.com/Amas0o/code-snippets-frontend"
+    "homepage": "https://amas0o.github.io/code-snippets-frontend"
+
 
 }
