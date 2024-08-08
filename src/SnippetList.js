@@ -1,21 +1,31 @@
 // src/SnippetList.js
-import React from 'react';
-import SnippetItem from './SnippetItem';
+import React, {useEffect, useState} from 'react';
+import { fetchSnippets } from './api/Snippets';
 
-function SnippetList() {
-  // Replace with actual snippets data (e.g., from state or props)
-  const snippets = [
-    { id: 1, content: 'console.log("Hello, world!");' },
-    { id: 2, content: 'const foo = 42;' }
-  ];
+
+const SnippetList = () => {
+  const [snippets, setSnippets] = useState([]);
+
+  useEffect(() => {
+      const getSnippets = async () => {
+          const data = await fetchSnippets();
+          console.log(data)
+          setSnippets(data);
+      };
+
+      getSnippets();
+  }, []);
 
   return (
-    <ul>
-      {snippets.map(snippet => (
-        <SnippetItem key={snippet.id} snippet={snippet} />
-      ))}
-    </ul>
+      <div>
+          <h1>Code Snippets</h1>
+          <ul>
+              {snippets.map(snippet => (
+                  <li key={snippet.id}>{snippet.title} - {snippet.code}</li>
+              ))}
+          </ul>
+      </div>
   );
-}
+};
 
 export default SnippetList;
